@@ -144,7 +144,7 @@ function Home() {
         </h1>
 
         <div className="flex gap-6 p-5">
-          <div className="h-[360px] w-[290px] bg-blue-950 rounded-[5px] flex flex-col justify-center items-center">
+          <div className="h-[360px] w-[290px] bg-gradient-to-b from-blue-500 to-blue-950 rounded-[5px] flex flex-col justify-center items-center">
             <img src={image10} alt="" className="h-[160px]" />
             <h1 className="text-[25px] text-white mt-[10px]">Henry Smith</h1>
             <p className="text-[15px] text-white">Founder</p>
@@ -169,7 +169,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="h-[360px] w-[290px] bg-blue-950 rounded-[5px] flex flex-col justify-center items-center">
+          <div className="h-[360px] w-[290px] bg-gradient-to-b from-blue-500 to-blue-950 rounded-[5px] flex flex-col justify-center items-center">
             <img src={image11} alt="" className="h-[160px]" />
             <h1 className="text-[25px] text-white mt-[10px]">Nancy White</h1>
             <p className="text-[15px] text-white">Manager</p>
@@ -194,7 +194,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="h-[360px] w-[290px] bg-blue-950 rounded-[5px] flex flex-col justify-center items-center">
+          <div className="h-[360px] w-[290px] bg-gradient-to-b from-blue-500 to-blue-950 rounded-[5px] flex flex-col justify-center items-center">
             <img src={image12} alt="" className="h-[160px]" />
             <h1 className="text-[25px] text-white mt-[10px]">Devid Miller</h1>
             <p className="text-[15px] text-white">Manager</p>
@@ -219,7 +219,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="h-[360px] w-[290px] bg-blue-950 rounded-[5px] flex flex-col justify-center items-center">
+          <div className="h-[360px] w-[290px] bg-gradient-to-b from-blue-500 to-blue-950 rounded-[5px] flex flex-col justify-center items-center">
             <img src={image13} alt="" className="h-[160px]" />
             <h1 className="text-[25px] text-white mt-[10px]">Perry Bella</h1>
             <p className="text-[15px] text-white">Designer</p>
@@ -244,6 +244,7 @@ function Home() {
             </div>
           </div>
         </div>
+        
         <div className="flex flex-col justify-center items-center mt-[20px] gap-y-3">
           <h1 className="text-[25px] font-bold">Testimonials</h1>
           <p className="text-[18px] flex flex-col items-center">
@@ -301,7 +302,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="h-[550px] bg-blue-800">
+      <div className="h-[550px] bg-gradient-to-b from-[#031841] to-[#0047AB]">
         <div className="flex text-white gap-15">
           <div className="w-[300px] ml-[80px] mt-[100px]">
             <h1 className="text-gray-300">

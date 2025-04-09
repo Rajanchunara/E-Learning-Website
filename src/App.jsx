@@ -7,8 +7,9 @@ import Courses from './Pages/Courses'
 import Instructors from './Pages/Instructors'
 import More from './Pages/More'
 import Navigation from './NavBar/Navigation'
-import Login from './Pages/Login'
+import Login from './Aurth/Login'
 import Register from './Pages/Register'
+import Profile from './Pages/Profile'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/more' element={<More/>} />
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
+        <Route path='/profile' element={<Profile/>} />
       </Routes>
     </div>
   )
