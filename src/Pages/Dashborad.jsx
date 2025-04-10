@@ -2,7 +2,6 @@ import React from "react";
 import Dashbar from "../Dashboard/Dashbar";
 import { NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { FaUser } from "react-icons/fa";
 import image from "../assets/Dashboard/image.png";
 import { SlBookOpen } from "react-icons/sl";
 import { FaGraduationCap } from "react-icons/fa";
@@ -32,7 +31,8 @@ function Dashborad() {
                   />
                 </NavLink>
               ) : (
-                <FaUser size={25} className="mt-2.5" />
+                <div></div>
+
               )}
             </div>
           </div>
