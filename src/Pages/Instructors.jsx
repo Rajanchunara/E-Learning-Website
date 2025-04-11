@@ -1,8 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { ValueContext } from '../Context/ValueProvider'
 import Footer from "../Footer/Footer";
+import { NavLink } from 'react-router-dom';
 
 function Instructors() {
+  // const [product ,setProduct] =useState([]);
 
   const data = useContext(ValueContext)
 
@@ -12,7 +14,7 @@ function Instructors() {
         <h1 className='text-[27px] font-bold pt-[50px] ml-[70px]'>Instructors</h1>
         <div>
           {
-            data.map((teacher,index) => {
+            data.map((teacher, index) => {
               return (
                 <div key={index} className='bg-white flex items-center justify-between h-[150px] w-[1000px] m-8 ml-[70px] pl-[30px] pr-[30px] rounded-[5px] shadow-2xl shadow-gray-500 '>
                   <div className='flex gap-8'>
@@ -22,11 +24,10 @@ function Instructors() {
                       <h2>COURSE: <span className='font-normal'>{teacher.course}</span></h2>
                     </div>
                   </div>
-                  <div className='w-[120px] h-[40px] bg-blue-950 flex justify-center text-white rounded-[8px]'>
-                    <button>
-                      Visit Profile
-                    </button>
-                  </div>
+                  <NavLink key={teacher.name} to={`/instructorprofile/${teacher.id}`} className='w-[120px] h-[40px] bg-blue-950 flex justify-center items-center text-white rounded-[8px]'>
+                        Visit Profile
+                  </NavLink>
+
                 </div>
               )
             })
@@ -34,7 +35,7 @@ function Instructors() {
 
         </div>
       </div>
-      <Footer/> 
+      <Footer />
     </div>
   )
 }

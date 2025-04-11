@@ -16,17 +16,14 @@ function Profile() {
             <h1 className=" text-[25px] font-bold">My Profile</h1>
             <div>
               {isAuthenticated ? (
-                <NavLink
-                  to="/profile"
-                  className="flex items-center gap-4 text-blue-900 font-medium"
-                >
+                <div className="flex items-center gap-4 text-blue-900 font-medium">
                   <h1>{user.name}</h1>
                   <img
                     src={user.picture}
                     alt=""
                     className="rounded-full h-10"
                   />
-                </NavLink>
+                  </div>
               ) : (
                 <div></div>
               )}

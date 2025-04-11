@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { MdOutlineDashboard } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { FaBook } from "react-icons/fa6";
@@ -10,42 +10,80 @@ import { LuMessageSquareMore } from "react-icons/lu";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CiLogin } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Dashbar() {
-    const { logout, isAuthenticated } = useAuth0()
-    return (
-        <div>
-            <div className="w-[250px] m-4 rounded-[10px] shadow-2xl shadow-gray-600  h-[830px] flex flex-col  pt-[30px]">
-                <ul className="font-bold">
-                    <div className="space-y-5 mt-[20px] pl-[20px]">
-                        <NavLink to='/dashboard' className="gap-2 pl-[40px] flex items-center  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600">
-                            <MdOutlineDashboard />Dashboard
-                        </NavLink>
-                        <NavLink to='/profile' className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600">
-                            <CgProfile />My Profile
-                        </NavLink>
-                        <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"><FaBook />My Courses</li>
-                        <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"><BsListTask />Tasks</li>
-                        <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"><MdOndemandVideo />Course Videos</li>
-                        <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"><FaRegHeart />Wishlist</li>
-                        <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"><VscFeedback />Feedback</li>
-                        <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"><LuMessageSquareMore />Messages</li>
-                    </div>
-                    <div className="space-y-5 mt-[150px] ml-[25px] border-t-1 w-[200px] pt-[20px] pl-[40px]">
-                        <li className="flex items-center gap-2 hover:text-blue-700"><IoSettingsOutline />Setting</li>
-                        {isAuthenticated ? (
-                            <button onClick={() => {
-                                logout();
-                            }} className="flex items-center gap-2 hover:text-blue-700">
-                                <CiLogin />Log Out
-                            </button>
-                        ) : (<div></div>)}
-                    </div>
-                </ul>
-            </div>
+  const { logout, isAuthenticated } = useAuth0();
+  return (
+    <div>
+      <div className="w-[250px] m-4 rounded-[10px] shadow-2xl shadow-gray-600  h-[830px] flex flex-col  pt-[30px]">
+       <div className="font-bold">
+          <div className="space-y-5 mt-[20px] pl-[20px]">
+            <NavLink
+              to="/dashboard"
+              className="gap-2 pl-[40px] flex items-center  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"
+            >
+              <MdOutlineDashboard />
+              Dashboard
+            </NavLink>
+            <NavLink
+              to="/profile"
+              className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"
+            >
+              <CgProfile />
+              My Profile
+            </NavLink>
+            <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600">
+              <FaBook />
+              My Courses
+            </li>
+            <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600">
+              <BsListTask />
+              Tasks
+            </li>
+            <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600">
+              <MdOndemandVideo />
+              Course Videos
+            </li>
+            <NavLink
+              to="/watchlist"
+              className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"
+            >
+              <FaRegHeart />
+              Wishlist
+            </NavLink>
+            <NavLink
+              to="/feedback"
+              className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"
+            >
+              <VscFeedback />
+              Feedback
+            </NavLink>
+            <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600">
+              <LuMessageSquareMore />
+              Messages
+            </li>
+          </div>
+          <div className="space-y-5 mt-[150px] ml-[25px] border-t-1 w-[200px] pt-[20px] pl-[40px]">
+           <NavLink to='/settings' className="flex items-center gap-2 hover:text-blue-700">
+              <IoSettingsOutline />
+              Setting
+            </NavLink>
+            
+              <button
+                onClick={() => {
+                  logout();
+                }}
+                className="flex items-center gap-2 hover:text-blue-700"
+              >
+                <CiLogin />
+                Log Out
+              </button>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default Dashbar
+export default Dashbar;

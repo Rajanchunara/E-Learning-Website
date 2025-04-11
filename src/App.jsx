@@ -10,6 +10,10 @@ import Navigation from './NavBar/Navigation'
 import Login from './Aurth/Login'
 import Register from './Pages/Register'
 import Profile from './Pages/Profile'
+import InstructorProfile from './Pages/InstructorProfile'
+import Watchlist from './Pages/Watchlist'
+import FeedBack from './Pages/FeedBack'
+import Settings from './Pages/Settings'
 
 function App() {
   return (
@@ -25,6 +29,10 @@ function App() {
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/profile' element={<Profile/>} />
+        <Route path='/instructorprofile' element={<InstructorProfile/>} />
+        <Route path='/watchlist' element={<Watchlist/>} />
+        <Route path='/feedback' element={<FeedBack/>} />
+        <Route path='/settings' element={<Settings/>} />
       </Routes>
     </div>
   )
