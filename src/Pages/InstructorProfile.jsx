@@ -1,8 +1,11 @@
 import React from 'react'
 
+
 function InstructorProfile() {
   return (
-    <div>InstructorProfile</div>
+    <div>
+      adcsdsd
+    </div>
   )
 }
 

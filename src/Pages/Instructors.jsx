@@ -4,7 +4,6 @@ import Footer from "../Footer/Footer";
 import { NavLink } from 'react-router-dom';
 
 function Instructors() {
-  // const [product ,setProduct] =useState([]);
 
   const data = useContext(ValueContext)
 
