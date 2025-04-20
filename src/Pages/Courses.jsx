@@ -65,8 +65,6 @@ function Courses() {
             })
           }
         </div>
-
-
       </div>
     </div>
   )
