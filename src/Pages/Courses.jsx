@@ -57,7 +57,7 @@ function Courses() {
                       <FaRegHeart size={20} />
                     </button>
                   </div>
-                  <button className='w-[170px] h-[30px] border-2 border-blue-900 text-blue-700 rounded-[5px] mt-[35px] ml-[40px]'>
+                  <button className='w-[170px] h-[30px] border-2 border-blue-900 text-blue-700 rounded-[5px] mt-[35px] ml-[40px] hover:bg-blue-900 hover:text-white'>
                     View More
                   </button>
                 </div>
