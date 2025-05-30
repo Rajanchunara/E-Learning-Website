@@ -12,6 +12,7 @@ import Register from './Pages/Register'
 import Profile from './Pages/Profile'
 import InstructorProfile from './Pages/InstructorProfile'
 import Watchlist from './Pages/Watchlist'
+import CourseDetails from './Pages/courseDetails'
 import FeedBack from './Pages/FeedBack'
 import Settings from './Pages/Settings'
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/aboutus' element={<AboutUs/>} />
         <Route path='/dashboard' element={<Dashborad/>} />
         <Route path='/courses' element={<Courses/>} />
+        <Route path='/course/:id' element={<CourseDetails/>} />
         <Route path='/instructors' element={<Instructors/>} />
         <Route path='/more' element={<More/>} />
         <Route path='/register' element={<Register/>} />
