@@ -4,12 +4,14 @@ import { FaSquarePlus } from "react-icons/fa6";
 import { FaMinusSquare } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { toast, Bounce } from "react-toastify";
+import Footer from "../Footer/Footer";
+import empty from "../assets/Image/empty.webp"
+
 
 const CartPage = () => {
   const { state, dispatch } = useContext(CartContext);
   const { cartItem } = state;
 
-  
   const handleRemoveFromCart = (course) => {
     dispatch({ type: "RemoveItem", payload: course });
     toast.info(`${course.course} removed from cart`, {
@@ -18,7 +20,6 @@ const CartPage = () => {
       transition: Bounce,
     });
   };
-  
 
   const totalAmount = state.cartItem.reduce((acc, item) => {
     return acc + item.qty * item.cost;
@@ -30,7 +31,7 @@ const CartPage = () => {
 
   return (
     <div>
-      <div>
+      <div className="h-auto">
         {cartItem.length > 0 ? (
           <div className="flex">
             <div className="w-[900px] ">
@@ -56,35 +57,38 @@ const CartPage = () => {
                         </h1>
 
                         <button
-                        onClick={()=>{
-                          handleRemoveFromCart(item)
-                        }}
-                        
-                        className="p-2 bg-orange-600 rounded-[6px] hover:bg-orange-800 text-white">
+                          onClick={() => {
+                            handleRemoveFromCart(item);
+                          }}
+                          className="p-2 bg-orange-600 rounded-[6px] hover:bg-orange-800 text-white"
+                        >
                           Delete
                         </button>
                       </div>
 
                       <div className=" h-14 space-x-2 flex justify-center items-center">
                         <button
-                        
-                        onClick={() => {
-                            dispatch({ type: "Decrement", payload: { id: item.id } })
+                          onClick={() => {
+                            dispatch({
+                              type: "Decrement",
+                              payload: { id: item.id },
+                            });
                           }}
-                        
-                        className="hover:text-gray-700">
+                          className="hover:text-gray-700"
+                        >
                           <FaMinusSquare size={30} />
                         </button>
                         <span className="text-[30px]">{item.qty}</span>
 
                         <button
-                        onClick={() => {
-                            dispatch({ type: "Increment", payload: { id: item.id } })
+                          onClick={() => {
+                            dispatch({
+                              type: "Increment",
+                              payload: { id: item.id },
+                            });
                           }}
-
-                        
-                        
-                        className="hover:text-gray-700">
+                          className="hover:text-gray-700"
+                        >
                           <FaSquarePlus size={30} />
                         </button>
                       </div>
@@ -102,19 +106,18 @@ const CartPage = () => {
               </button>
 
               <button
-              
-              onClick={() => {
-                  dispatch({ type: "ClearCart" })
+                onClick={() => {
+                  dispatch({ type: "ClearCart" });
                 }}
-              
-              className="bg-orange-600 p-3 text-white rounded-[5px] hover:bg-orange-800">
+                className="bg-orange-600 p-3 text-white rounded-[5px] hover:bg-orange-800"
+              >
                 Empty Cart
               </button>
             </div>
           </div>
         ) : (
           <div className="w-96 h-60 m-auto mt-16 flex flex-col justify-center items-center">
-            {/* <img src={empty} alt="" className="w-[400px] " /> */}
+            <img src={empty} alt="" className="w-[400px] " />
             <p className="font-mono">
               Item Not Found On Cart{" "}
               <NavLink to="/courses" className="underline text-red-500">
@@ -124,6 +127,7 @@ const CartPage = () => {
           </div>
         )}
       </div>
+      <Footer/>
     </div>
   );
 };
