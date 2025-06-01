@@ -4,9 +4,13 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { CartProvider } from "./Context/CartContext/CartProvider.jsx";
+import { Bounce, ToastContainer } from 'react-toastify';
+
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
+  <CartProvider>
     <Auth0Provider
       domain="dev-wkqmchj3xikks4z7.us.auth0.com"
       clientId="uSWLnkzqP2vJVY0EbSfuiwWOQnwY15NH"
@@ -16,6 +20,23 @@ createRoot(document.getElementById("root")).render(
     >
       <App />
     </Auth0Provider>
-    ,
+     <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
+
+
+
+
+    </CartProvider>
   </BrowserRouter>
 );

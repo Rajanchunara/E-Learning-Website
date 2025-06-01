@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { IoCartSharp } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
@@ -6,14 +6,22 @@ import { BsGlobe } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
 import { useAuth0 } from "@auth0/auth0-react";
 import { FaUser } from "react-icons/fa";
-
+import { BsCart4 } from "react-icons/bs";
+import { CartContext } from "../Context/CartContext/CartProvider";
 
 function Navigation() {
   const { user, logout, isAuthenticated } = useAuth0();
+
+  const {state} = useContext(CartContext)
+
+
+  const totalCartItem = state.cartItem.reduce((acc, item) => {
+    return acc + item.qty;
+  }, 0);
   return (
     <div>
-      <div className="flex items-center gap-15 p-2.5 h-20 bg-amber-300 ">
-        <div className="space-x-5 ml-[100px]">
+      <div className="flex items-center justify-between gap-15 p-2.5 h-20 bg-amber-300 ">
+        <div className="space-x-5 ml-[60px] flex">
           <NavLink to="/" className="hover:text-blue-500">
             Home
           </NavLink>
@@ -32,6 +40,21 @@ function Navigation() {
           <NavLink to="/more" className="hover:text-blue-500">
             More
           </NavLink>
+
+          {/* <NavLink to="/cartpage" className=" hover:text-blue-500">
+            <span className="absolute ml-[25px] top-[18px] z-50 text-white border w-[25px] flex justify-center bg-red-500 rounded-[50px]">
+              {totalCartItem}
+            </span>
+            <BsCart4 className="w-[30px] h-[30px]  " />
+          </NavLink> */}
+
+          <NavLink to="/cartpage" className="hover:text-blue-500">
+               <span className="absolute ml-[25px] top-[18px] z-50 text-white border w-[25px] flex justify-center bg-red-500 rounded-[50px]">
+              {totalCartItem}
+            </span>
+
+            <BsCart4 className="w-[30px] h-[30px]  " />
+          </NavLink>
         </div>
         <div className=" flex justify-end items-end space-x-4">
           <NavLink className=" bg-amber-50 h-[35px] text-[15px] rounded-[50px] flex justify-center items-center p-1.5">
@@ -46,7 +69,10 @@ function Navigation() {
           </NavLink>
 
           {isAuthenticated ? (
-            <NavLink to="/profile" className='flex items-center gap-2 text-blue-900 font-medium'>
+            <NavLink
+              to="/profile"
+              className="flex items-center gap-2 text-blue-900 font-medium"
+            >
               <img src={user.picture} alt="" className="rounded-full h-10" />
               <h1>{user.name}</h1>
             </NavLink>
@@ -59,15 +85,12 @@ function Navigation() {
             </NavLink>
           )}
 
-
           <NavLink
             to="/register"
             className=" bg-blue-600 text-white w-[85px] flex justify-center items-center h-[35px] rounded-[10px] hover:bg-blue-900"
           >
             Register
           </NavLink>
-
-
 
           <NavLink className="hover:text-blue-700">
             <BsGlobe size={30} />

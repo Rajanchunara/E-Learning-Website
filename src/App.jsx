@@ -15,6 +15,7 @@ import Watchlist from './Pages/Watchlist'
 import CourseDetails from './Pages/courseDetails'
 import FeedBack from './Pages/FeedBack'
 import Settings from './Pages/Settings'
+import CartPage from './Pages/CartPage'
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path='/watchlist' element={<Watchlist/>} />
         <Route path='/feedback' element={<FeedBack/>} />
         <Route path='/settings' element={<Settings/>} />
+        <Route path='/cartpage' element={<CartPage/>} />
       </Routes>
     </div>
   )
