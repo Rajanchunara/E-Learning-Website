@@ -3,6 +3,7 @@ import Dashbar from "../Dashboard/Dashbar";
 import { NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import image from "../assets/Dashboard/image.png";
+import Footer from "../Footer/Footer";
 
 function Profile() {
   const { user, isAuthenticated } = useAuth0();
@@ -54,6 +55,7 @@ function Profile() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

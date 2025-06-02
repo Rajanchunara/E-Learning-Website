@@ -17,7 +17,7 @@ function Dashbar() {
   return (
     <div>
       <div className="w-[250px] m-4 rounded-[10px] shadow-2xl shadow-gray-600  h-[830px] flex flex-col  pt-[30px]">
-       <div className="font-bold">
+        <div className="font-bold">
           <div className="space-y-5 mt-[20px] pl-[20px]">
             <NavLink
               to="/dashboard"
@@ -33,10 +33,14 @@ function Dashbar() {
               <CgProfile />
               My Profile
             </NavLink>
-            <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600">
+
+            <NavLink
+              to="/mycourses"
+              className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"
+            >
               <FaBook />
               My Courses
-            </li>
+            </NavLink>
             <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600">
               <BsListTask />
               Tasks
@@ -65,20 +69,23 @@ function Dashbar() {
             </li>
           </div>
           <div className="space-y-5 mt-[150px] ml-[25px] border-t-1 w-[200px] pt-[20px] pl-[40px]">
-           <NavLink to='/settings' className="flex items-center gap-2 hover:text-blue-700">
+            <NavLink
+              to="/settings"
+              className="flex items-center gap-2 hover:text-blue-700"
+            >
               <IoSettingsOutline />
               Setting
             </NavLink>
-            
-              <button
-                onClick={() => {
-                  logout();
-                }}
-                className="flex items-center gap-2 hover:text-blue-700"
-              >
-                <CiLogin />
-                Log Out
-              </button>
+
+            <button
+              onClick={() => {
+                logout();
+              }}
+              className="flex items-center gap-2 hover:text-blue-700"
+            >
+              <CiLogin />
+              Log Out
+            </button>
           </div>
         </div>
       </div>

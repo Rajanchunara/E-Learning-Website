@@ -18,7 +18,6 @@ import Footer from "../Footer/Footer";
 import { CartContext } from "../Context/CartContext/CartProvider";
 import { toast, Bounce } from "react-toastify";
 
-
 const courses = [
   {
     id: 1,
@@ -185,9 +184,6 @@ function Courses() {
   //   dispatch({ type: "AddToCart", payload: course });
   // };
 
-
-
-  
   const handleAddToCart = (course) => {
     dispatch({ type: "AddToCart", payload: course });
 
@@ -204,8 +200,25 @@ function Courses() {
     });
   };
 
+  const handleAddToMyCourses = (course) => {
+    dispatch({ type: "AddToMyCourses", payload: course });
+
+     toast.success(`${course.course} is added to my courses`, {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+     
+    
 
 
+  };
 
   const navigate = useNavigate();
   const viewCourse = (course) => {
@@ -236,14 +249,17 @@ function Courses() {
                 <h2 className="flex justify-center p-3 font-">{item.course}</h2>
                 <div className="flex justify-between">
                   <button
-                   onClick={() => handleAddToCart(item)}
+                    onClick={() => handleAddToCart(item)}
                     className="flex items-center justify-center hover:bg-amber-700 hover:text-white gap-2 bg-amber-400 w-[135px] h-[30px] rounded-2xl ml-[20px] mt-[10px]"
                   >
                     <IoCartSharp />
                     Add to cart
                   </button>
-                  <button className="text-red-600 mr-[20px]">
-                    <FaRegHeart size={20} />
+                  <button
+                    onClick={() => handleAddToMyCourses(item)}
+                    className="flex items-center justify-center hover:bg-amber-700 hover:text-white bg-amber-400 w-[80px] h-[30px] rounded-2xl ml-[20px] mt-[10px] mr-[10px]"
+                  >
+                    ADD
                   </button>
                 </div>
                 <button

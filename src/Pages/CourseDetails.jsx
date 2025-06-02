@@ -1,14 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { IoMdTime } from "react-icons/io";
 import { SlCalender } from "react-icons/sl";
 import { FaCalendarWeek } from "react-icons/fa";
 import Footer from "../Footer/Footer";
+import { toast, Bounce } from "react-toastify";
+import { CartContext } from "../Context/CartContext/CartProvider";
+
 
 
 function courseDetails() {
   const { id } = useParams();
   const { state } = useLocation();
+    const { dispatch } = useContext(CartContext);
+  
+
+
+const handleAddToCart = (course) => {
+    dispatch({ type: "AddToCart", payload: course });
+
+    toast.success(`${course.course} is added to cart`, {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+  };
+
+
+
+
+
+
   return (
     <div className="bg-amber-50 pt-[50px]">
       <div className=" flex gap-15 h-[330px] bg-gradient-to-b from-[#031841] to-[#0047AB] ml-[50px]  mr-[50px] rounded-t-[30px] pl-[20px] pt-[30px]">
@@ -42,7 +70,11 @@ function courseDetails() {
               Rs. {state.cost}
             </span>
           </h1>
-          <button className="h-[40px] w-[160px] bg-blue-900 hover:bg-blue-950 mt-[20px] text-white rounded-[20px]">ADD TO CART</button>
+          <button 
+          onClick={() => handleAddToCart(state)}
+          
+          
+           className="h-[40px] w-[160px] bg-blue-900 hover:bg-blue-950 mt-[20px] text-white rounded-[20px]">ADD TO CART</button>
            <div className="mt-[20px] space-y-3">
              <h1 className="flex items-center gap-2 text-[18px] text-gray-500"><IoMdTime/> {state.time}</h1>
              <h1 className="flex items-center gap-2 text-[18px] text-gray-500"><SlCalender/> {state.duration}</h1>

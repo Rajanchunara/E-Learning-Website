@@ -2,13 +2,16 @@ import React, { useContext } from "react";
 import { CartContext } from "../Context/CartContext/CartProvider";
 import { FaSquarePlus } from "react-icons/fa6";
 import { FaMinusSquare } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast, Bounce } from "react-toastify";
 import Footer from "../Footer/Footer";
 import empty from "../assets/Image/empty.webp"
 
 
 const CartPage = () => {
+
+  const navigate = useNavigate()
+
   const { state, dispatch } = useContext(CartContext);
   const { cartItem } = state;
 
@@ -101,7 +104,12 @@ const CartPage = () => {
               <h1 className="text-3xl font-bold">Order Summery</h1>
               <h1 className="text-[20px]">Total: {totalAmount}</h1>
 
-              <button className="bg-black p-3 text-white rounded-[5px] hover:bg-gray-800">
+              <button
+               onClick={()=>{
+                navigate("/payment", {state: {totalAmount: totalAmount, totalItem: totalItem}})
+               }}
+              
+              className="bg-black p-3 text-white rounded-[5px] hover:bg-gray-800">
                 Procced to checkout({totalItem})
               </button>
 
@@ -127,7 +135,9 @@ const CartPage = () => {
           </div>
         )}
       </div>
+      <div className="mt-[100px]">
       <Footer/>
+      </div>
     </div>
   );
 };
