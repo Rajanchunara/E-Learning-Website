@@ -10,10 +10,10 @@ import { LuMessageSquareMore } from "react-icons/lu";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CiLogin } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 function Dashbar() {
-  const { logout, isAuthenticated } = useAuth0();
+  // const { logout, isAuthenticated } = useAuth0();
   return (
     <div>
       <div className="w-[250px] m-4 rounded-[10px] shadow-2xl shadow-gray-600  h-[830px] flex flex-col  pt-[30px]">
@@ -41,14 +41,20 @@ function Dashbar() {
               <FaBook />
               My Courses
             </NavLink>
-            <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600">
+            <NavLink
+              to="/task"
+              className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"
+            >
               <BsListTask />
               Tasks
-            </li>
-            <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600">
+            </NavLink>
+            <NavLink
+              to="/coursevideos"
+              className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"
+            >
               <MdOndemandVideo />
               Course Videos
-            </li>
+            </NavLink>
             <NavLink
               to="/watchlist"
               className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"
@@ -63,10 +69,13 @@ function Dashbar() {
               <VscFeedback />
               Feedback
             </NavLink>
-            <li className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600">
+            <NavLink
+              to="/messages"
+              className="pl-[40px] flex items-center gap-2  w-[200px] h-[35px] rounded-2xl hover:text-white hover:bg-blue-600"
+            >
               <LuMessageSquareMore />
               Messages
-            </li>
+            </NavLink>
           </div>
           <div className="space-y-5 mt-[150px] ml-[25px] border-t-1 w-[200px] pt-[20px] pl-[40px]">
             <NavLink
@@ -77,7 +86,7 @@ function Dashbar() {
               Setting
             </NavLink>
 
-            <button
+            {/* <button
               onClick={() => {
                 logout();
               }}
@@ -85,7 +94,7 @@ function Dashbar() {
             >
               <CiLogin />
               Log Out
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

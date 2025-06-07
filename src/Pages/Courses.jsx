@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { CartContext } from "../Context/CartContext/CartProvider";
 import { toast, Bounce } from "react-toastify";
+import { AuthContext } from "../Context/AuthProvider";
 
 const courses = [
   {
@@ -179,12 +180,15 @@ const courses = [
 
 function Courses() {
   const { dispatch } = useContext(CartContext);
-
-  // const addToCart = (course) => {
-  //   dispatch({ type: "AddToCart", payload: course });
-  // };
+  const { user } = useContext(AuthContext);
 
   const handleAddToCart = (course) => {
+    if (!user) {
+      // If not logged in, redirect
+      navigate("/login");
+      return;
+    }
+
     dispatch({ type: "AddToCart", payload: course });
 
     toast.success(`${course.course} is added to cart`, {
@@ -201,9 +205,14 @@ function Courses() {
   };
 
   const handleAddToMyCourses = (course) => {
+    if (!user) {
+      // If not logged in, redirect
+      navigate("/login");
+      return;
+    }
     dispatch({ type: "AddToMyCourses", payload: course });
 
-     toast.success(`${course.course} is added to my courses`, {
+    toast.success(`${course.course} is added to my courses`, {
       position: "top-right",
       autoClose: 1000,
       hideProgressBar: false,
@@ -214,10 +223,6 @@ function Courses() {
       theme: "light",
       transition: Bounce,
     });
-     
-    
-
-
   };
 
   const navigate = useNavigate();

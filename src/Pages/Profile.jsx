@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Dashbar from "../Dashboard/Dashbar";
 import { NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import image from "../assets/Dashboard/image.png";
 import Footer from "../Footer/Footer";
+import { AuthContext } from "../Context/AuthProvider";
 
 function Profile() {
-  const { user, isAuthenticated } = useAuth0();
+  // const { user, isAuthenticated } = useAuth0();
+  const { user } = useContext(AuthContext);
   return (
     <div>
       <div className="flex">
@@ -16,15 +18,10 @@ function Profile() {
           <div className="flex items-center justify-between m-3">
             <h1 className=" text-[25px] font-bold">My Profile</h1>
             <div>
-              {isAuthenticated ? (
+              {user ? (
                 <div className="flex items-center gap-4 text-blue-900 font-medium">
                   <h1>{user.name}</h1>
-                  <img
-                    src={user.picture}
-                    alt=""
-                    className="rounded-full h-10"
-                  />
-                  </div>
+                </div>
               ) : (
                 <div></div>
               )}
@@ -33,7 +30,7 @@ function Profile() {
           <div className="h-[320px] m-5 mt-[40px]  rounded-[10px] bg-gradient-to-l from-yellow-400 to-blue-800 pl-[20px] pt-[20px] flex">
             <div>
               <h1 className="text-[25px] text-white ">WELCOME!</h1>
-              {isAuthenticated ? (
+              {user ? (
                 <div className="flex justify-between pr-[20px]">
                   <h1 className="text-[20px] text-white font-medium">
                     {user.name}
@@ -53,9 +50,26 @@ function Profile() {
             </div>
             <img src={image} alt="" className="w-[285px]" />
           </div>
+          <div>
+            {user ? (
+              <div className="m-5 text-2xl space-y-4">
+                <h1>
+                  <span className="font-semibold">Full Name:</span> {user.name}
+                </h1>
+                <h1>
+                  <span className="font-semibold">Email:</span> {user.email}
+                </h1>
+                <h1>
+                  <span className="font-semibold">Phone:</span> {user.phone}
+                </h1>
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

@@ -20,6 +20,9 @@ import Payment from './Pages/Payment/Payment'
 import Failure from './Pages/Payment/Failure'
 import Success from './Pages/Payment/Success'
 import MyCourses from './Pages/MyCourses'
+import Task from './Pages/Task'
+import CourseVideos from './Pages/CourseVideos'
+import Messages from './Pages/Messages'
 
 function App() {
   return (
@@ -45,6 +48,9 @@ function App() {
         <Route path='/failure' element={<Failure/>} />
         <Route path='/success' element={<Success/>} />
         <Route path='/mycourses' element={<MyCourses/>} />
+        <Route path='/task' element={<Task/>} />
+        <Route path='/coursevideos' element={<CourseVideos/>} />
+        <Route path='/messages' element={<Messages/>} />
       </Routes>
     </div>
   )

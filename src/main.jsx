@@ -6,10 +6,12 @@ import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { CartProvider } from "./Context/CartContext/CartProvider.jsx";
 import { Bounce, ToastContainer } from 'react-toastify';
+import { AuthProvider } from "./Context/AuthProvider.jsx";
 
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
+  <AuthProvider>
   <CartProvider>
     <Auth0Provider
       domain="dev-wkqmchj3xikks4z7.us.auth0.com"
@@ -38,5 +40,6 @@ createRoot(document.getElementById("root")).render(
 
 
     </CartProvider>
+    </AuthProvider>
   </BrowserRouter>
 );

@@ -4,15 +4,30 @@ import { IoCartSharp } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { BsGlobe } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { FaUser } from "react-icons/fa";
 import { BsCart4 } from "react-icons/bs";
 import { CartContext } from "../Context/CartContext/CartProvider";
+import { AuthContext } from "../Context/AuthProvider";
 
 function Navigation() {
-  const { user, logout, isAuthenticated } = useAuth0();
+  // const { user, logout, isAuthenticated } = useAuth0();
 
   const { state } = useContext(CartContext);
+
+  const { getUser, user, setUser } = useContext(AuthContext);
+  const logout = async () => {
+    let response = await fetch("http://localhost:9000/api/user/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+    if (response.ok) {
+      response = await response.json();
+      console.log(response);
+      setUser(null);
+      alert(response.msg);
+    }
+  };
 
   const totalCartItem = state.cartItem.reduce((acc, item) => {
     return acc + item.qty;
@@ -36,9 +51,6 @@ function Navigation() {
           <NavLink to="/aboutus" className="hover:text-blue-500">
             About Us
           </NavLink>
-          {/* <NavLink to="/more" className="hover:text-blue-500">
-            More
-          </NavLink> */}
           <NavLink to="/cartpage" className="hover:text-blue-500">
             <span className="absolute ml-[25px] top-[18px] z-50 text-white border w-[25px] flex justify-center bg-red-500 rounded-[50px]">
               {totalCartItem}
@@ -47,19 +59,47 @@ function Navigation() {
             <BsCart4 className="w-[30px] h-[30px]  " />
           </NavLink>
         </div>
-        <div className=" flex justify-end items-end space-x-4">
+        <div className=" flex  space-x-5">
           <NavLink className=" bg-amber-50 h-[35px] text-[15px] rounded-[50px] flex justify-center items-center p-1.5">
             <input type="text" placeholder="Search for anything" />
             <CiSearch />
           </NavLink>
-          {/* <NavLink className="hover:text-blue-700">
-            <IoCartSharp size={30} />
-          </NavLink> */}
           <NavLink className="hover:text-blue-700">
             <FaRegHeart size={30} />
           </NavLink>
 
-          {isAuthenticated ? (
+          {user ? (
+            <button
+              className=" bg-blue-600 text-white w-[85px] flex justify-center items-center h-[35px] rounded-[10px] hover:bg-blue-900"
+              onClick={() => {
+                logout();
+              }}
+            >
+              LogOut
+            </button>
+          ) : (
+            <div className="flex gap-3">
+              <NavLink
+                to="/login"
+                className="text-blue-500 border-[1px] border-amber-50 h-[35px] hover:bg-blue-500 hover:text-white w-[80px] flex items-center justify-center rounded-[10px]"
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                className=" bg-blue-600 text-white w-[85px] flex justify-center items-center h-[35px] rounded-[10px] hover:bg-blue-900"
+              >
+                Register
+              </NavLink>
+            </div>
+          )}
+          {user && (
+            <div className="flex justify-center items-center text-blue-700 font-semibold">
+              <h1>{user.name}</h1>
+            </div>
+          )}
+
+          {/* {isAuthenticated ? (
             <NavLink
               to="/profile"
               className="flex items-center gap-2 text-blue-900 font-medium"
@@ -81,11 +121,11 @@ function Navigation() {
             className=" bg-blue-600 text-white w-[85px] flex justify-center items-center h-[35px] rounded-[10px] hover:bg-blue-900"
           >
             Register
-          </NavLink>
+          </NavLink> */}
 
-          <NavLink className="hover:text-blue-700">
+          {/* <NavLink className="hover:text-blue-700">
             <BsGlobe size={30} />
-          </NavLink>
+          </NavLink> */}
         </div>
       </div>
     </div>
