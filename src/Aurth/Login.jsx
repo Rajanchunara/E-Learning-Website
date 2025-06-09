@@ -24,7 +24,10 @@ function Login() {
         headers: { "Content-type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ email, password }),
+        
       });
+      console.log("Email:", email, "Password:", password);
+
       const response = await res.json();
 
       if (response.success) {
