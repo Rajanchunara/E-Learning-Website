@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import image1 from "../assets/Course/image.png";
 import image2 from "../assets/Course/image copy.png";
 import image3 from "../assets/Course/image copy 2.png";
@@ -181,6 +181,7 @@ const courses = [
 function Courses() {
   const { dispatch } = useContext(CartContext);
   const { user } = useContext(AuthContext);
+  const [courseList, setCourseList] = useState([]);
 
   const handleAddToCart = (course) => {
     if (!user) {
@@ -224,6 +225,28 @@ function Courses() {
       transition: Bounce,
     });
   };
+
+
+  const getCourse = async () => {
+    try {
+      let response = await fetch("http://localhost:9000/api/course/getCourse", {
+        method: "GET",
+      });
+      response = await response.json();
+      console.log("Courses API Response:", response);
+      setCourseList(response.course || []);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+      setCourseList([]);
+    }
+  };
+
+  useEffect(() => {
+    getCourse();
+  }, []);
+
+
+
 
   const navigate = useNavigate();
   const viewCourse = (course) => {
@@ -280,61 +303,32 @@ function Courses() {
       </div>
 
       <div>
-
-
-     <div>
-        {courseList.length > 0 ? (
-          <div className="   flex  flex-wrap ">
-            {courseList.map((item) => {
-              return (
-                <div
-                  key={item._id}
-                  className="h-72 w-72 p-5 m-3 shadow-2xl  flex  flex-col  items-center   shadow-gray-600    "
-                >
-                  <img
-                    className="h-40"
-                    src={`http://localhost:9000/image/${item.image}`}
-                    alt=""
-                  />
-                  <h1>{item.name}</h1>
-
-                  <div>
-                    <button
-                      onClick={() => {
-                        navigate("/edit", {
-                          state: {
-                            item,
-                          },
-                        });
-                      }}
-                      className="bg-orange-500  p-2 w-20"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => {
-                        deleteCourse(item._id);
-                      }}
-                      className="bg-red-500  ml-2 p-2 w-20"
-                    >
-                      Delete
-                    </button>
+        <div className="mt-[50px]">
+          {courseList.length > 0 ? (
+            <div className="   flex  flex-wrap ">
+              {courseList.map((item) => {
+                return (
+                  <div
+                    key={item._id}
+                    className="h-72 w-72 p-5 m-3 shadow-2xl  flex  flex-col  items-center    shadow-gray-600    "
+                  >
+                    <img
+                      className="h-40"
+                      src={`http://localhost:9000/image/${item.image}`}
+                      alt=""
+                    />
+                    <h1>{item.name}</h1>
+                    <h1>Rs.{item.price}</h1>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div>loading...</div>
-        )}
+                  
+                );
+              })}
+            </div>
+          ) : (
+            <div>loading...</div>
+          )}
+        </div>
       </div>
-
-      </div>
-
-
-
-
-
 
       <Footer />
     </div>

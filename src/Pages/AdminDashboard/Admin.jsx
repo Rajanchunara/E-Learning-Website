@@ -66,8 +66,8 @@ function Admin() {
   }, []);
   return (
     <div>
-      <div>
-        <form onSubmit={createCourse} className="border-2">
+      <div className="m-[10px] w-[700px] h-[350px] ">
+        <form onSubmit={createCourse} className="border-2 p-3 space-y-2">
           <label htmlFor="name">Name</label>
           <br />
           <input
@@ -76,6 +76,7 @@ function Admin() {
             }}
             type="text"
             placeholder="Enter Course Name"
+            className="w-full px-4 py-2 border rounded-md text-sm"
           />
 
           <br />
@@ -89,6 +90,7 @@ function Admin() {
             }}
             type="text"
             placeholder="Enter Course description"
+            className="w-full px-4 py-2 border rounded-md text-sm"
           />
           <br />
 
@@ -101,6 +103,7 @@ function Admin() {
             }}
             type="number"
             placeholder="Enter course Price"
+            className="w-full px-4 py-2 border rounded-md text-sm"
           />
           <br />
 
@@ -111,15 +114,18 @@ function Admin() {
               setImage(e.target.files[0]);
             }}
             type="file"
+            className=" px-4 py-2 border rounded-md text-sm"
           />
           <br />
           <br />
 
-          <button type="submit">Submit</button>
+          <button type="submit" className="border-1 p-2 rounded-2xl">
+            Submit
+          </button>
         </form>
       </div>
 
-      <div>
+      {/* <div className="mt-[50px]">
         {courseList.length > 0 ? (
           <div className="   flex  flex-wrap ">
             {courseList.map((item) => {
@@ -164,6 +170,69 @@ function Admin() {
           </div>
         ) : (
           <div>loading...</div>
+        )}
+      </div> */}
+
+      <div className="mt-12 p-4">
+        {courseList.length > 0 ? (
+          <div className="overflow-x-auto">
+            <table className="min-w-full border border-gray-300 text-left">
+              <thead className="bg-gray-200">
+                <tr>
+                  <th className="px-4 py-2 border">S.N.</th>
+                  <th className="px-4 py-2 border">Course Name</th>
+                  <th className="px-4 py-2 border">Price</th>
+                  <th className="px-4 py-2 border">Description</th>
+                  <th className="px-4 py-2 border">Image</th>
+                  <th className="px-4 py-2 border">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {courseList.map((item, index) => (
+                  <tr key={item._id} className="hover:bg-gray-50">
+                    <td className="px-4 py-2 border">{index + 1}</td>
+                    <td className="px-4 py-2 border">{item.name}</td>
+                    <td className="px-4 py-2 border">Rs.{item.price}</td>
+                    <td className="px-4 py-2 border">
+                      {item.description.length > 20
+                        ? item.description.slice(0, 30) + "..."
+                        : item.description}
+                    </td>
+
+                    <td className="px-4 py-2 border">
+                      <img
+                        src={`http://localhost:9000/image/${item.image}`}
+                        alt={item.name}
+                        className="h-16 w-16 object-cover"
+                      />
+                    </td>
+                    <td className="px-4 py-2 border">
+                      <button
+                        onClick={() =>
+                          navigate("/edit", {
+                            state: { item },
+                          })
+                        }
+                        className="bg-orange-500 text-white px-3 py-1 rounded mr-2"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => deleteCourse(item._id)}
+                        className="bg-red-500 text-white px-3 py-1 rounded"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="text-center mt-10 text-lg font-semibold">
+            Loading...
+          </div>
         )}
       </div>
     </div>
