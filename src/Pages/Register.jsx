@@ -43,7 +43,7 @@ const Register = () => {
       <div className="bg-white rounded-md shadow-md p-8 w-full max-w-md relative overflow-hidden">
         <div className="relative z-10">
           <h2 className="text-center text-xl font-semibold mb-6">
-            Sign up to <span className="font-bold">S.T. Tech</span>
+            Sign up
           </h2>
 
           {/* Form Fields */}
