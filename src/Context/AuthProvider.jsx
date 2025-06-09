@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
         credentials: "include",
       });
       const data = await res.json();
+      console.log("User Info from API:", data.userInfo);
       setUser(data.userInfo || null);
     } catch (error) {
       setUser(null);

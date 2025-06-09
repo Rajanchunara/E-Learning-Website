@@ -278,6 +278,64 @@ function Courses() {
           })}
         </div>
       </div>
+
+      <div>
+
+
+     <div>
+        {courseList.length > 0 ? (
+          <div className="   flex  flex-wrap ">
+            {courseList.map((item) => {
+              return (
+                <div
+                  key={item._id}
+                  className="h-72 w-72 p-5 m-3 shadow-2xl  flex  flex-col  items-center   shadow-gray-600    "
+                >
+                  <img
+                    className="h-40"
+                    src={`http://localhost:9000/image/${item.image}`}
+                    alt=""
+                  />
+                  <h1>{item.name}</h1>
+
+                  <div>
+                    <button
+                      onClick={() => {
+                        navigate("/edit", {
+                          state: {
+                            item,
+                          },
+                        });
+                      }}
+                      className="bg-orange-500  p-2 w-20"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => {
+                        deleteCourse(item._id);
+                      }}
+                      className="bg-red-500  ml-2 p-2 w-20"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div>loading...</div>
+        )}
+      </div>
+
+      </div>
+
+
+
+
+
+
       <Footer />
     </div>
   );

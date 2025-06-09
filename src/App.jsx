@@ -5,7 +5,6 @@ import AboutUs from './Pages/AboutUs'
 import Dashborad from './Pages/Dashborad'
 import Courses from './Pages/Courses'
 import Instructors from './Pages/Instructors'
-// import More from './Pages/More'
 import Navigation from './NavBar/Navigation'
 import Login from './Aurth/Login'
 import Register from './Pages/Register'
@@ -23,6 +22,8 @@ import MyCourses from './Pages/MyCourses'
 import Task from './Pages/Task'
 import CourseVideos from './Pages/CourseVideos'
 import Messages from './Pages/Messages'
+import Admin from './Pages/AdminDashboard/Admin'
+import Edit from './Pages/AdminDashboard/Edit'
 
 function App() {
   return (
@@ -35,7 +36,6 @@ function App() {
         <Route path='/courses' element={<Courses/>} />
         <Route path='/course/:id' element={<CourseDetails/>} />
         <Route path='/instructors' element={<Instructors/>} />
-        {/* <Route path='/more' element={<More/>} /> */}
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/profile' element={<Profile/>} />
@@ -51,6 +51,8 @@ function App() {
         <Route path='/task' element={<Task/>} />
         <Route path='/coursevideos' element={<CourseVideos/>} />
         <Route path='/messages' element={<Messages/>} />
+        <Route path='/admin' element={<Admin/>} />
+        <Route path='/edit' element={<Edit/>} />
       </Routes>
     </div>
   )

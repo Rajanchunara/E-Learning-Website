@@ -51,6 +51,12 @@ function Navigation() {
           <NavLink to="/aboutus" className="hover:text-blue-500">
             About Us
           </NavLink>
+          {user?.role === "admin" && (
+            <NavLink to="/admin" className="hover:text-blue-500">
+              Admin
+            </NavLink>
+          )}
+
           <NavLink to="/cartpage" className="hover:text-blue-500">
             <span className="absolute ml-[25px] top-[18px] z-50 text-white border w-[25px] flex justify-center bg-red-500 rounded-[50px]">
               {totalCartItem}
